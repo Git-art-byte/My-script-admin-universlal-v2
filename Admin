@@ -1,19 +1,10 @@
 --[[
-
 ======================================================================
-
-ULTIMATE ADMIN SCRIPT (800+ LINES)
-
-- Includes ALL requested features
-
-- Fully working GUI
-
-- Mobile & PC compatible
-
-- Chat commands
-
+ULTIMATE ADMIN SCRIPT (MOBILE OPTIMIZED)
+- All original features preserved
+- Perfect for phone screens
+- Same functionality as Admin.txt
 ======================================================================
-
 ]]
 
 local Player = game:GetService("Players").LocalPlayer
@@ -32,22 +23,19 @@ if CG:FindFirstChild("UltimateAdminGUI") then
 end
 
 --[[
-
 ======================================================================
-
-GUI CREATION
-
+MOBILE GUI (ALL FEATURES)
 ======================================================================
-
 ]]
 
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "UltimateAdminGUI"
 ScreenGui.Parent = CG
 
+-- Main Frame (Phone-sized)
 local MainFrame = Instance.new("Frame")
-MainFrame.Size = UDim2.new(0.4, 0, 0.6, 0)
-MainFrame.Position = UDim2.new(0.55, 0, 0.2, 0)
+MainFrame.Size = UDim2.new(0.85, 0, 0.55, 0)
+MainFrame.Position = UDim2.new(0.075, 0, 0.2, 0)
 MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
 MainFrame.BackgroundTransparency = 0.1
 MainFrame.Active = true
@@ -56,28 +44,28 @@ MainFrame.Parent = ScreenGui
 
 -- Title Bar
 local TitleBar = Instance.new("Frame")
-TitleBar.Size = UDim2.new(1, 0, 0.08, 0)
+TitleBar.Size = UDim2.new(1, 0, 0.09, 0)
 TitleBar.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
 TitleBar.Parent = MainFrame
 
 local Title = Instance.new("TextLabel")
-Title.Text = "ULTIMATE ADMIN"
-Title.Size = UDim2.new(0.8, 0, 1, 0)
-Title.Position = UDim2.new(0.1, 0, 0, 0)
+Title.Text = "ADMIN PANEL"
+Title.Size = UDim2.new(0.7, 0, 1, 0)
+Title.Position = UDim2.new(0.15, 0, 0, 0)
 Title.TextColor3 = Color3.fromRGB(0, 255, 255)
 Title.Font = Enum.Font.GothamBold
-Title.TextSize = 18
+Title.TextSize = 16
 Title.BackgroundTransparency = 1
 Title.Parent = TitleBar
 
 local CloseButton = Instance.new("TextButton")
 CloseButton.Text = "X"
-CloseButton.Size = UDim2.new(0.1, 0, 1, 0)
-CloseButton.Position = UDim2.new(0.9, 0, 0, 0)
+CloseButton.Size = UDim2.new(0.15, 0, 1, 0)
+CloseButton.Position = UDim2.new(0.85, 0, 0, 0)
 CloseButton.TextColor3 = Color3.fromRGB(255, 80, 80)
 CloseButton.BackgroundTransparency = 1
 CloseButton.Font = Enum.Font.GothamBold
-CloseButton.TextSize = 18
+CloseButton.TextSize = 16
 CloseButton.Parent = TitleBar
 
 CloseButton.MouseButton1Click:Connect(function()
@@ -86,27 +74,27 @@ end)
 
 -- Scrolling Frame
 local ScrollFrame = Instance.new("ScrollingFrame")
-ScrollFrame.Size = UDim2.new(1, 0, 0.92, 0)
-ScrollFrame.Position = UDim2.new(0, 0, 0.08, 0)
-ScrollFrame.CanvasSize = UDim2.new(0, 0, 3, 0)
+ScrollFrame.Size = UDim2.new(1, 0, 0.91, 0)
+ScrollFrame.Position = UDim2.new(0, 0, 0.09, 0)
+ScrollFrame.CanvasSize = UDim2.new(0, 0, 2, 0)
 ScrollFrame.ScrollBarThickness = 6
 ScrollFrame.BackgroundTransparency = 1
 ScrollFrame.Parent = MainFrame
 
--- Button Creation Function
+-- Button Creation
 local function CreateButton(name, text, position)
     local button = Instance.new("TextButton")
     button.Name = name
     button.Text = text
-    button.Size = UDim2.new(0.9, 0, 0.08, 0)
+    button.Size = UDim2.new(0.9, 0, 0.075, 0)
     button.Position = position
     button.BackgroundColor3 = Color3.fromRGB(50, 50, 70)
     button.TextColor3 = Color3.fromRGB(255, 255, 255)
     button.Font = Enum.Font.Gotham
     button.TextSize = 14
+    button.TextWrapped = true
     button.Parent = ScrollFrame
     
-    -- Button hover effects
     button.MouseEnter:Connect(function()
         button.BackgroundColor3 = Color3.fromRGB(70, 70, 90)
     end)
@@ -118,24 +106,40 @@ local function CreateButton(name, text, position)
     return button
 end
 
---[[
+-- Create all buttons (compact labels)
+local FlyButton = CreateButton("FlyButton", "Fly (F)", UDim2.new(0.05, 0, 0, 0))
+local NoclipButton = CreateButton("NoclipButton", "NoClip (N)", UDim2.new(0.05, 0, 0.08, 0))
+local BtoolsButton = CreateButton("BtoolsButton", "B-Tools", UDim2.new(0.05, 0, 0.16, 0))
+local SpeedButton = CreateButton("SpeedButton", "Speed:16", UDim2.new(0.05, 0, 0.24, 0))
+local JumpButton = CreateButton("JumpButton", "Jump:50", UDim2.new(0.05, 0, 0.32, 0))
+local ESPButton = CreateButton("ESPButton", "ESP:OFF", UDim2.new(0.05, 0, 0.40, 0))
+local GodButton = CreateButton("GodButton", "God:OFF", UDim2.new(0.05, 0, 0.48, 0))
+local InvisButton = CreateButton("InvisButton", "Invis:OFF", UDim2.new(0.05, 0, 0.56, 0))
+local RejoinButton = CreateButton("RejoinButton", "Rejoin", UDim2.new(0.05, 0, 0.64, 0))
+local ServerHopButton = CreateButton("ServerHopButton", "ServerHop", UDim2.new(0.05, 0, 0.72, 0))
+local FullBrightButton = CreateButton("FullBrightButton", "Bright:OFF", UDim2.new(0.05, 0, 0.80, 0))
+local AntiAFKButton = CreateButton("AntiAFKButton", "AntiAFK:OFF", UDim2.new(0.05, 0, 0.88, 0))
+local HideNameButton = CreateButton("HideNameButton", "HideName", UDim2.new(0.05, 0, 0.96, 0))
+local TeleportToolButton = CreateButton("TeleportToolButton", "TP Tool", UDim2.new(0.05, 0, 1.04, 0))
+local AimbotButton = CreateButton("AimbotButton", "Aimbot:OFF", UDim2.new(0.05, 0, 1.12, 0))
+local AutoFarmButton = CreateButton("AutoFarmButton", "Farm:OFF", UDim2.new(0.05, 0, 1.20, 0))
 
+-- Adjust canvas size
+ScrollFrame.CanvasSize = UDim2.new(0, 0, 0, AutoFarmButton.AbsolutePosition.Y + AutoFarmButton.AbsoluteSize.Y - ScrollFrame.AbsolutePosition.Y + 5)
+
+--[[ 
 ======================================================================
-
-FEATURE IMPLEMENTATIONS
-
+ALL ORIGINAL FEATURES (FROM ADMIN.TXT)
 ======================================================================
-
 ]]
 
 -- 1. FLY SYSTEM
-local FlyButton = CreateButton("FlyButton", "Fly (Press F)", UDim2.new(0.05, 0, 0, 0))
 local flying = false
 local flySpeed = 50
 
 local function ToggleFly()
     flying = not flying
-    FlyButton.Text = flying and "Flying (ON)" or "Fly (Press F)"
+    FlyButton.Text = flying and "Fly (ON)" or "Fly (F)"
     FlyButton.BackgroundColor3 = flying and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(50, 50, 70)
     
     if flying then
@@ -199,7 +203,6 @@ end
 
 FlyButton.MouseButton1Click:Connect(ToggleFly)
 
--- F key to toggle fly
 UIS.InputBegan:Connect(function(input, gameProcessed)
     if input.KeyCode == Enum.KeyCode.F and not gameProcessed then
         ToggleFly()
@@ -207,12 +210,11 @@ UIS.InputBegan:Connect(function(input, gameProcessed)
 end)
 
 -- 2. NOCLIP SYSTEM
-local NoclipButton = CreateButton("NoclipButton", "Noclip (Press N)", UDim2.new(0.05, 0, 0.1, 0))
 local noclip = false
 
 local function ToggleNoclip()
     noclip = not noclip
-    NoclipButton.Text = noclip and "Noclip (ON)" or "Noclip (Press N)"
+    NoclipButton.Text = noclip and "NoClip (ON)" or "NoClip (N)"
     NoclipButton.BackgroundColor3 = noclip and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(50, 50, 70)
     
     if Player.Character then
@@ -226,14 +228,12 @@ end
 
 NoclipButton.MouseButton1Click:Connect(ToggleNoclip)
 
--- N key to toggle noclip
 UIS.InputBegan:Connect(function(input, gameProcessed)
     if input.KeyCode == Enum.KeyCode.N and not gameProcessed then
         ToggleNoclip()
     end
 end)
 
--- Auto noclip on respawn
 Player.CharacterAdded:Connect(function(character)
     if noclip then
         character:WaitForChild("HumanoidRootPart")
@@ -246,7 +246,6 @@ Player.CharacterAdded:Connect(function(character)
 end)
 
 -- 3. BTOOLS
-local BtoolsButton = CreateButton("BtoolsButton", "Give B-Tools", UDim2.new(0.05, 0, 0.2, 0))
 BtoolsButton.MouseButton1Click:Connect(function()
     for _, toolName in pairs({"Hammer", "Clone", "Grab"}) do
         local tool = Instance.new("Tool")
@@ -254,12 +253,11 @@ BtoolsButton.MouseButton1Click:Connect(function()
         tool.RequiresHandle = false
         tool.Parent = Player.Backpack
     end
-    BtoolsButton.Text = "B-Tools Given!"
-    task.delay(2, function() BtoolsButton.Text = "Give B-Tools" end)
+    BtoolsButton.Text = "B-Tools ✓"
+    task.delay(2, function() BtoolsButton.Text = "B-Tools" end)
 end)
 
 -- 4. SPEED CONTROL
-local SpeedButton = CreateButton("SpeedButton", "Speed: 16", UDim2.new(0.05, 0, 0.3, 0))
 local speedValues = {16, 25, 50, 100, 150}
 local currentSpeedIndex = 1
 
@@ -269,12 +267,11 @@ SpeedButton.MouseButton1Click:Connect(function()
     
     if Player.Character and Player.Character:FindFirstChildOfClass("Humanoid") then
         Player.Character.Humanoid.WalkSpeed = newSpeed
-        SpeedButton.Text = "Speed: "..newSpeed
+        SpeedButton.Text = "Speed:"..newSpeed
     end
 end)
 
 -- 5. JUMP POWER
-local JumpButton = CreateButton("JumpButton", "Jump: 50", UDim2.new(0.05, 0, 0.4, 0))
 local jumpValues = {50, 75, 100, 150, 200}
 local currentJumpIndex = 1
 
@@ -284,17 +281,16 @@ JumpButton.MouseButton1Click:Connect(function()
     
     if Player.Character and Player.Character:FindFirstChildOfClass("Humanoid") then
         Player.Character.Humanoid.JumpPower = newJump
-        JumpButton.Text = "Jump: "..newJump
+        JumpButton.Text = "Jump:"..newJump
     end
 end)
 
 -- 6. ESP
-local ESPButton = CreateButton("ESPButton", "ESP: OFF", UDim2.new(0.05, 0, 0.5, 0))
 local espEnabled = false
 
 local function ToggleESP()
     espEnabled = not espEnabled
-    ESPButton.Text = espEnabled and "ESP: ON" or "ESP: OFF"
+    ESPButton.Text = espEnabled and "ESP:ON" or "ESP:OFF"
     ESPButton.BackgroundColor3 = espEnabled and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(50, 50, 70)
     
     for _, player in pairs(game:GetService("Players"):GetPlayers()) do
@@ -311,26 +307,24 @@ end
 ESPButton.MouseButton1Click:Connect(ToggleESP)
 
 -- 7. GOD MODE
-local GodButton = CreateButton("GodButton", "God Mode: OFF", UDim2.new(0.05, 0, 0.6, 0))
 GodButton.MouseButton1Click:Connect(function()
     if Player.Character and Player.Character:FindFirstChildOfClass("Humanoid") then
         local humanoid = Player.Character.Humanoid
         if humanoid.MaxHealth == math.huge then
             humanoid.MaxHealth = 100
             humanoid.Health = 100
-            GodButton.Text = "God Mode: OFF"
+            GodButton.Text = "God:OFF"
             GodButton.BackgroundColor3 = Color3.fromRGB(50, 50, 70)
         else
             humanoid.MaxHealth = math.huge
             humanoid.Health = math.huge
-            GodButton.Text = "God Mode: ON"
+            GodButton.Text = "God:ON"
             GodButton.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
         end
     end
 end)
 
 -- 8. INVISIBILITY
-local InvisButton = CreateButton("InvisButton", "Invisibility: OFF", UDim2.new(0.05, 0, 0.7, 0))
 InvisButton.MouseButton1Click:Connect(function()
     if Player.Character then
         local isInvisible = Player.Character.Head.Transparency == 1
@@ -344,19 +338,17 @@ InvisButton.MouseButton1Click:Connect(function()
                 part.Transparency = isInvisible and 0 or 1
             end
         end
-        InvisButton.Text = isInvisible and "Invisibility: OFF" or "Invisibility: ON"
+        InvisButton.Text = isInvisible and "Invis:OFF" or "Invis:ON"
         InvisButton.BackgroundColor3 = isInvisible and Color3.fromRGB(50, 50, 70) or Color3.fromRGB(0, 200, 0)
     end
 end)
 
 -- 9. REJOIN
-local RejoinButton = CreateButton("RejoinButton", "Rejoin Server", UDim2.new(0.05, 0, 0.8, 0))
 RejoinButton.MouseButton1Click:Connect(function()
     TS:Teleport(game.PlaceId, Player)
 end)
 
 -- 10. SERVER HOP
-local ServerHopButton = CreateButton("ServerHopButton", "Server Hop", UDim2.new(0.05, 0, 0.9, 0))
 ServerHopButton.MouseButton1Click:Connect(function()
     local servers = game:HttpGet("https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Asc&limit=100")
     servers = HttpService:JSONDecode(servers)
@@ -370,12 +362,11 @@ ServerHopButton.MouseButton1Click:Connect(function()
 end)
 
 -- 11. FULL BRIGHT
-local FullBrightButton = CreateButton("FullBrightButton", "FullBright: OFF", UDim2.new(0.05, 0, 1.0, 0))
 local fullBright = false
 
 FullBrightButton.MouseButton1Click:Connect(function()
     fullBright = not fullBright
-    FullBrightButton.Text = fullBright and "FullBright: ON" or "FullBright: OFF"
+    FullBrightButton.Text = fullBright and "Bright:ON" or "Bright:OFF"
     FullBrightButton.BackgroundColor3 = fullBright and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(50, 50, 70)
     
     if fullBright then
@@ -390,12 +381,11 @@ FullBrightButton.MouseButton1Click:Connect(function()
 end)
 
 -- 12. ANTI-AFK
-local AntiAFKButton = CreateButton("AntiAFKButton", "Anti-AFK: OFF", UDim2.new(0.05, 0, 1.1, 0))
 local antiAFK = false
 
 AntiAFKButton.MouseButton1Click:Connect(function()
     antiAFK = not antiAFK
-    AntiAFKButton.Text = antiAFK and "Anti-AFK: ON" or "Anti-AFK: OFF"
+    AntiAFKButton.Text = antiAFK and "AntiAFK:ON" or "AntiAFK:OFF"
     AntiAFKButton.BackgroundColor3 = antiAFK and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(50, 50, 70)
     
     if antiAFK then
@@ -412,24 +402,22 @@ AntiAFKButton.MouseButton1Click:Connect(function()
 end)
 
 -- 13. HIDE NAME
-local HideNameButton = CreateButton("HideNameButton", "Hide Name: OFF", UDim2.new(0.05, 0, 1.2, 0))
 HideNameButton.MouseButton1Click:Connect(function()
     if Player.Character and Player.Character:FindFirstChildOfClass("Humanoid") then
         local humanoid = Player.Character.Humanoid
         if humanoid.DisplayName == "" then
             humanoid.DisplayName = Player.Name
-            HideNameButton.Text = "Hide Name: OFF"
+            HideNameButton.Text = "HideName"
             HideNameButton.BackgroundColor3 = Color3.fromRGB(50, 50, 70)
         else
             humanoid.DisplayName = ""
-            HideNameButton.Text = "Hide Name: ON"
+            HideNameButton.Text = "NameHidden"
             HideNameButton.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
         end
     end
 end)
 
 -- 14. TELEPORT TOOL
-local TeleportToolButton = CreateButton("TeleportToolButton", "Give TP Tool", UDim2.new(0.05, 0, 1.3, 0))
 TeleportToolButton.MouseButton1Click:Connect(function()
     local tool = Instance.new("Tool")
     tool.Name = "TeleportTool"
@@ -443,12 +431,11 @@ TeleportToolButton.MouseButton1Click:Connect(function()
         end
     end)
     
-    TeleportToolButton.Text = "TP Tool Given!"
-    task.delay(2, function() TeleportToolButton.Text = "Give TP Tool" end)
+    TeleportToolButton.Text = "TP Tool ✓"
+    task.delay(2, function() TeleportToolButton.Text = "TP Tool" end)
 end)
 
 -- 15. AIMBOT
-local AimbotButton = CreateButton("AimbotButton", "Aimbot: OFF", UDim2.new(0.05, 0, 1.4, 0))
 local aimbotEnabled = false
 
 local function GetClosestPlayer()
@@ -470,7 +457,7 @@ end
 
 AimbotButton.MouseButton1Click:Connect(function()
     aimbotEnabled = not aimbotEnabled
-    AimbotButton.Text = aimbotEnabled and "Aimbot: ON" or "Aimbot: OFF"
+    AimbotButton.Text = aimbotEnabled and "Aimbot:ON" or "Aimbot:OFF"
     AimbotButton.BackgroundColor3 = aimbotEnabled and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(50, 50, 70)
     
     if aimbotEnabled then
@@ -485,19 +472,17 @@ AimbotButton.MouseButton1Click:Connect(function()
     end
 end)
 
--- 16. AUTO-FARM (Basic)
-local AutoFarmButton = CreateButton("AutoFarmButton", "Auto-Farm: OFF", UDim2.new(0.05, 0, 1.5, 0))
+-- 16. AUTO-FARM
 local autoFarmEnabled = false
 
 AutoFarmButton.MouseButton1Click:Connect(function()
     autoFarmEnabled = not autoFarmEnabled
-    AutoFarmButton.Text = autoFarmEnabled and "Auto-Farm: ON" or "Auto-Farm: OFF"
+    AutoFarmButton.Text = autoFarmEnabled and "Farm:ON" or "Farm:OFF"
     AutoFarmButton.BackgroundColor3 = autoFarmEnabled and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(50, 50, 70)
     
     if autoFarmEnabled then
         spawn(function()
             while autoFarmEnabled and Player.Character and Player.Character:FindFirstChild("HumanoidRootPart") do
-                -- Basic auto-farm logic (customize for your game)
                 Player.Character.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame + Vector3.new(0, 0, -5)
                 wait(0.5)
             end
@@ -505,19 +490,7 @@ AutoFarmButton.MouseButton1Click:Connect(function()
     end
 end)
 
--- Adjust canvas size
-ScrollFrame.CanvasSize = UDim2.new(0, 0, 0, AutoFarmButton.AbsolutePosition.Y + AutoFarmButton.AbsoluteSize.Y - ScrollFrame.AbsolutePosition.Y)
-
---[[
-
-======================================================================
-
-CHAT COMMANDS
-
-======================================================================
-
-]]
-
+-- CHAT COMMANDS (identical to original)
 Player.Chatted:Connect(function(message)
     message = string.lower(message)
     
@@ -534,13 +507,13 @@ Player.Chatted:Connect(function(message)
         local speed = tonumber(string.sub(message, 8)) or 16
         if Player.Character and Player.Character:FindFirstChildOfClass("Humanoid") then
             Player.Character.Humanoid.WalkSpeed = speed
-            SpeedButton.Text = "Speed: "..speed
+            SpeedButton.Text = "Speed:"..speed
         end
     elseif string.sub(message, 1, 5) == "/jump" then
         local power = tonumber(string.sub(message, 7)) or 50
         if Player.Character and Player.Character:FindFirstChildOfClass("Humanoid") then
             Player.Character.Humanoid.JumpPower = power
-            JumpButton.Text = "Jump: "..power
+            JumpButton.Text = "Jump:"..power
         end
     elseif message == "/esp" then ToggleESP()
     elseif message == "/god" then
@@ -549,12 +522,12 @@ Player.Chatted:Connect(function(message)
             if humanoid.MaxHealth == math.huge then
                 humanoid.MaxHealth = 100
                 humanoid.Health = 100
-                GodButton.Text = "God Mode: OFF"
+                GodButton.Text = "God:OFF"
                 GodButton.BackgroundColor3 = Color3.fromRGB(50, 50, 70)
             else
                 humanoid.MaxHealth = math.huge
                 humanoid.Health = math.huge
-                GodButton.Text = "God Mode: ON"
+                GodButton.Text = "God:ON"
                 GodButton.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
             end
         end
@@ -571,7 +544,7 @@ Player.Chatted:Connect(function(message)
                     part.Transparency = isInvisible and 0 or 1
                 end
             end
-            InvisButton.Text = isInvisible and "Invisibility: OFF" or "Invisibility: ON"
+            InvisButton.Text = isInvisible and "Invis:OFF" or "Invis:ON"
             InvisButton.BackgroundColor3 = isInvisible and Color3.fromRGB(50, 50, 70) or Color3.fromRGB(0, 200, 0)
         end
     elseif message == "/rejoin" then TS:Teleport(game.PlaceId, Player)
@@ -586,7 +559,7 @@ Player.Chatted:Connect(function(message)
         end
     elseif message == "/fullbright" then
         fullBright = not fullBright
-        FullBrightButton.Text = fullBright and "FullBright: ON" or "FullBright: OFF"
+        FullBrightButton.Text = fullBright and "Bright:ON" or "Bright:OFF"
         FullBrightButton.BackgroundColor3 = fullBright and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(50, 50, 70)
         if fullBright then
             Lighting.Ambient = Color3.new(1, 1, 1)
@@ -599,7 +572,7 @@ Player.Chatted:Connect(function(message)
         end
     elseif message == "/antiafk" then
         antiAFK = not antiAFK
-        AntiAFKButton.Text = antiAFK and "Anti-AFK: ON" or "Anti-AFK: OFF"
+        AntiAFKButton.Text = antiAFK and "AntiAFK:ON" or "AntiAFK:OFF"
         AntiAFKButton.BackgroundColor3 = antiAFK and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(50, 50, 70)
         if antiAFK then
             local conn; conn = game:GetService("Players").LocalPlayer.Idled:Connect(function()
@@ -617,11 +590,11 @@ Player.Chatted:Connect(function(message)
             local humanoid = Player.Character.Humanoid
             if humanoid.DisplayName == "" then
                 humanoid.DisplayName = Player.Name
-                HideNameButton.Text = "Hide Name: OFF"
+                HideNameButton.Text = "HideName"
                 HideNameButton.BackgroundColor3 = Color3.fromRGB(50, 50, 70)
             else
                 humanoid.DisplayName = ""
-                HideNameButton.Text = "Hide Name: ON"
+                HideNameButton.Text = "NameHidden"
                 HideNameButton.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
             end
         end
@@ -638,11 +611,11 @@ Player.Chatted:Connect(function(message)
         end)
     elseif message == "/aimbot" then
         aimbotEnabled = not aimbotEnabled
-        AimbotButton.Text = aimbotEnabled and "Aimbot: ON" or "Aimbot: OFF"
+        AimbotButton.Text = aimbotEnabled and "Aimbot:ON" or "Aimbot:OFF"
         AimbotButton.BackgroundColor3 = aimbotEnabled and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(50, 50, 70)
     elseif message == "/autofarm" then
         autoFarmEnabled = not autoFarmEnabled
-        AutoFarmButton.Text = autoFarmEnabled and "Auto-Farm: ON" or "Auto-Farm: OFF"
+        AutoFarmButton.Text = autoFarmEnabled and "Farm:ON" or "Farm:OFF"
         AutoFarmButton.BackgroundColor3 = autoFarmEnabled and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(50, 50, 70)
     elseif message == "/help" then
         print([[
@@ -667,4 +640,4 @@ Player.Chatted:Connect(function(message)
     end
 end)
 
-print("Ultimate Admin GUI Loaded! Use /help for commands.")
+print("Mobile Admin Panel Loaded! Use /help for commands.")
